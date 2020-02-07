@@ -11,6 +11,10 @@ import { LanguageService } from './language/services/language.service';
 import { JwtInterceptor } from './services/http/jwt.interceptor';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { StorageModule } from './services/storage/storage.module';
+import {MaterialModule} from '@core/material/material.module';
+import { LayoutComponent } from './layout/layout.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { HeaderComponent } from './navigation/header/header.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -31,14 +35,20 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    MaterialModule,
+    FlexLayoutModule
   ],
-  declarations: [],
+  declarations: [LayoutComponent, HeaderComponent],
+  exports: [
+    LayoutComponent,
+    HeaderComponent
+  ],
   providers: [
     HttpService,
     LanguageService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
-    { provide: ErrorHandler, useClass: ErrorHandlerService }
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS},
+    {provide: ErrorHandler, useClass: ErrorHandlerService}
   ]
 })
 

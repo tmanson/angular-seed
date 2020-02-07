@@ -7,6 +7,9 @@ import { SharedModule } from '@app/shared/shared.module';
   declarations: [
     HomeComponent
   ],
+  exports: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     SharedModule
