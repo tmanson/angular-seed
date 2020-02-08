@@ -15,6 +15,8 @@ import {MaterialModule} from '@core/material/material.module';
 import { LayoutComponent } from './layout/layout.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HeaderComponent } from './navigation/header/header.component';
+import {AppRoutingModule} from '@app/app-routing.module';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -22,26 +24,28 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    StorageModule,
-    NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
-    LanguageModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
-    MaterialModule,
-    FlexLayoutModule
-  ],
-  declarations: [LayoutComponent, HeaderComponent],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        StorageModule,
+        NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
+        LanguageModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        MaterialModule,
+        FlexLayoutModule,
+        AppRoutingModule
+    ],
+  declarations: [LayoutComponent, HeaderComponent, SidenavListComponent],
   exports: [
     LayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavListComponent
   ],
   providers: [
     HttpService,
