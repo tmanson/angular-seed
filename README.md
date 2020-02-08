@@ -25,12 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-"# Angular-8-Seed"
+"# Angular-9-Seed"
 
-# Angular 8 Seed
-Starter App with Angular 8
+# Angular 9 Seed
+Starter App with Angular 9
 
-This is all You actually need to start a fresh professional Angular 8 App, following best practices and scaffolded with the most and useful modules and services including:
+This is all You actually need to start a fresh professional Angular 9 App, following best practices and scaffolded with the most and useful modules and services including:
 
 # Core Module
 
