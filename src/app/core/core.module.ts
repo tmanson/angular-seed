@@ -14,9 +14,9 @@ import {StorageModule} from './services/storage/storage.module';
 import {MaterialModule} from '@core/material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppRoutingModule} from '@app/app-routing.module';
-import {AppHeaderComponent} from '@core/layouts/header/header.component';
+import {HeaderComponent} from '@core/layouts/header/header.component';
 import {LayoutComponent} from '@core/layouts/layout.component';
-import {AppSidebarComponent} from '@core/layouts/sidebar/sidebar.component';
+import {SidebarComponent} from '@core/layouts/sidebar/sidebar.component';
 import {SpinnerComponent} from '@shared/spinner.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -44,9 +44,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     LayoutComponent,
-    AppHeaderComponent,
+    HeaderComponent,
     SpinnerComponent,
-    AppSidebarComponent],
+    SidebarComponent],
   exports: [
     SpinnerComponent,
     LayoutComponent

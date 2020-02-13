@@ -1,8 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {AuthService} from '@core/auth/auth.service';
 
 @Component({
-  selector: 'app-header-old',
+  selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: []
 })
-export class AppHeaderComponent {}
+export class HeaderComponent {
+  @Output() isLoggedIn = new EventEmitter<boolean>();
+
+  constructor(
+    private authService: AuthService) {
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+}

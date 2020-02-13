@@ -11,7 +11,7 @@ import {AuthService} from '@core/auth/auth.service';
   styleUrls: []
 })
 export class LayoutComponent implements OnDestroy, AfterViewInit, OnInit {
-  isLoggedIn$: Observable<boolean>;
+  isLoggedIn: Observable<boolean>;
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
@@ -36,10 +36,7 @@ export class LayoutComponent implements OnDestroy, AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
-  onLogout() {
-    this.authService.logout();                      // {3}
-  }
 }
