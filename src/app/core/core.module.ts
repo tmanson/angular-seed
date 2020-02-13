@@ -1,51 +1,56 @@
-import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpService } from '@core/services/http/http.service';
-import { ErrorHandlerService } from '@core/error-handler/error-handler.service';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LanguageModule } from './language/language.module';
-import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from './core.module.config';
-import { LanguageService } from './language/services/language.service';
-import { JwtInterceptor } from './services/http/jwt.interceptor';
-import { NgxWebstorageModule } from 'ngx-webstorage';
-import { StorageModule } from './services/storage/storage.module';
+import {ErrorHandler, NgModule, Optional, SkipSelf} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpService} from '@core/services/http/http.service';
+import {ErrorHandlerService} from '@core/error-handler/error-handler.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {LanguageModule} from './language/language.module';
+import {CORE_MODULE_CONFIG, CORE_MODULE_CONSTANTS} from './core.module.config';
+import {LanguageService} from './language/services/language.service';
+import {JwtInterceptor} from './services/http/jwt.interceptor';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {StorageModule} from './services/storage/storage.module';
 import {MaterialModule} from '@core/material/material.module';
-import { LayoutComponent } from './layout/layout.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { HeaderComponent } from './navigation/header/header.component';
 import {AppRoutingModule} from '@app/app-routing.module';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import {AppHeaderComponent} from '@core/layouts/header/header.component';
+import {LayoutComponent} from '@core/layouts/layout.component';
+import {AppSidebarComponent} from '@core/layouts/sidebar/sidebar.component';
+import {SpinnerComponent} from '@shared/spinner.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
-                                 CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.SUFFIX_FILE);
+    CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.SUFFIX_FILE);
 }
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        StorageModule,
-        NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
-        LanguageModule.forRoot(),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
-        }),
-        MaterialModule,
-        FlexLayoutModule,
-        AppRoutingModule
-    ],
-  declarations: [LayoutComponent, HeaderComponent, SidenavListComponent],
-  exports: [
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    StorageModule,
+    NgxWebstorageModule.forRoot(CORE_MODULE_CONSTANTS.WEBSTORAGE_CONFIG),
+    LanguageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    MaterialModule,
+    FlexLayoutModule,
+    AppRoutingModule,
+
+  ],
+  declarations: [
     LayoutComponent,
-    HeaderComponent,
-    SidenavListComponent
+    AppHeaderComponent,
+    SpinnerComponent,
+    AppSidebarComponent],
+  exports: [
+    SpinnerComponent,
+    LayoutComponent
   ],
   providers: [
     HttpService,

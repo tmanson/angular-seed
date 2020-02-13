@@ -29,7 +29,7 @@ $fontConfig: (
 // Foreground Elements
 
 // Light Theme Text
-$dark-text: #212121;
+$dark-text: #333366;
 $dark-primary-text: rgba($dark-text, 0.87);
 $dark-accent-text: rgba($dark-primary-text, 0.54);
 $dark-disabled-text: rgba($dark-primary-text, 0.38);
@@ -84,14 +84,14 @@ $mat-dark-theme-foreground: (
 
 // Background config
 // Light bg
-$light-background:    #ffffff;
+$light-background:    #fcfbf9;
 $light-bg-darker-5:   darken($light-background, 5%);
 $light-bg-darker-10:  darken($light-background, 10%);
 $light-bg-darker-20:  darken($light-background, 20%);
 $light-bg-darker-30:  darken($light-background, 30%);
 $light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-alpha-4:     rgba(#2b3036, 0.04);
-$dark-bg-alpha-12:    rgba(#2b3036, 0.12);
+$dark-bg-alpha-4:     rgba(#333366, 0.04);
+$dark-bg-alpha-12:    rgba(#333366, 0.12);
 
 $mat-light-theme-background: (
   background:               $light-background,
@@ -111,13 +111,13 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #2b3036;
+$dark-background:     #333366;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);
 $dark-bg-lighter-30:  lighten($dark-background, 30%);
-$light-bg-alpha-4:    rgba(#ffffff, 0.04);
-$light-bg-alpha-12:   rgba(#ffffff, 0.12);
+$light-bg-alpha-4:    rgba(#fcfbf9, 0.04);
+$light-bg-alpha-12:   rgba(#fcfbf9, 0.12);
 
 // Background palette for dark themes.
 $mat-dark-theme-background: (
@@ -143,19 +143,19 @@ $mat-dark-theme-background: (
 // Theme Config
 
 body {
-  --primary-color: #0c3b5e;
-  --primary-lighter-color: #b6c4cf;
-  --primary-darker-color: #062642;
+  --primary-color: #333366;
+  --primary-lighter-color: #c2c2d1;
+  --primary-darker-color: #202049;
   --text-primary-color: #{$light-primary-text};
   --text-primary-lighter-color: #{$dark-primary-text};
   --text-primary-darker-color: #{$light-primary-text};
 }
 
 $mat-primary: (
-  main: #0c3b5e,
-  lighter: #b6c4cf,
-  darker: #062642,
-  200: #0c3b5e, // For slide toggle,
+  main: #333366,
+  lighter: #c2c2d1,
+  darker: #202049,
+  200: #333366, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -165,19 +165,19 @@ $mat-primary: (
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
 body {
-  --accent-color: #4caf50;
-  --accent-lighter-color: #c9e7cb;
-  --accent-darker-color: #339637;
+  --accent-color: #00b7c6;
+  --accent-lighter-color: #b3e9ee;
+  --accent-darker-color: #009fb1;
   --text-accent-color: #{$dark-primary-text};
   --text-accent-lighter-color: #{$dark-primary-text};
   --text-accent-darker-color: #{$light-primary-text};
 }
 
 $mat-accent: (
-  main: #4caf50,
-  lighter: #c9e7cb,
-  darker: #339637,
-  200: #4caf50, // For slide toggle,
+  main: #00b7c6,
+  lighter: #b3e9ee,
+  darker: #009fb1,
+  200: #00b7c6, // For slide toggle,
   contrast : (
     main: $dark-primary-text,
     lighter: $dark-primary-text,
@@ -187,19 +187,19 @@ $mat-accent: (
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 body {
-  --warn-color: #bf0b23;
-  --warn-lighter-color: #ecb6bd;
-  --warn-darker-color: #a90615;
+  --warn-color: #ff4d00;
+  --warn-lighter-color: #ffcab3;
+  --warn-darker-color: #ff3400;
   --text-warn-color: #{$light-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$light-primary-text};
 }
 
 $mat-warn: (
-  main: #bf0b23,
-  lighter: #ecb6bd,
-  darker: #a90615,
-  200: #bf0b23, // For slide toggle,
+  main: #ff4d00,
+  lighter: #ffcab3,
+  darker: #ff3400,
+  200: #ff4d00, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -208,8 +208,8 @@ $mat-warn: (
 );
 $theme-warn: mat-palette($mat-warn, main, lighter, darker);;
 
-$altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+$altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
 @include angular-material-theme($theme);
