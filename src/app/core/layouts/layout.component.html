@@ -5,7 +5,7 @@
     <!-- ============================================================== -->
     <!-- Topbar - style you can find in header.scss -->
     <!-- ============================================================== -->
-    <mat-toolbar color="primary" class="topbar telative">
+    <mat-toolbar color="primary" class="topbar telative" *ngIf="isLoggedIn$ | async">
         <!-- ============================================================== -->
         <!-- Logo - style you can find in header.scss -->
         <!-- ============================================================== -->
@@ -43,11 +43,11 @@
     <!-- ============================================================== -->
     <!-- End Topbar - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0" >
         <!-- ============================================================== -->
         <!-- Sidebar - style you can find in sidebar.scss -->
         <!-- ============================================================== -->
-        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches"  >
+        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches"  *ngIf="isLoggedIn$ | async">
 
                 <app-sidebar></app-sidebar>
 

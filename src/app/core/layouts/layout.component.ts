@@ -1,19 +1,8 @@
-import * as $ from 'jquery';
-import { MediaMatcher } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
-import {
-  ChangeDetectorRef,
-  Component,
-  NgZone,
-  OnDestroy,
-  ViewChild,
-  HostListener,
-  Directive,
-  AfterViewInit
-} from '@angular/core';
-import { MenuItems } from '@shared/menu-items/menu-items';
-import { AppHeaderComponent } from './header/header.component';
-import { AppSidebarComponent } from './sidebar/sidebar.component';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {MenuItems} from '@shared/menu-items/menu-items';
+import {Observable} from 'rxjs';
+import {AuthService} from '@core/auth/auth.service';
 
 /** @title Responsive sidenav */
 @Component({
@@ -21,7 +10,8 @@ import { AppSidebarComponent } from './sidebar/sidebar.component';
   templateUrl: 'layout.component.html',
   styleUrls: []
 })
-export class LayoutComponent implements OnDestroy, AfterViewInit {
+export class LayoutComponent implements OnDestroy, AfterViewInit, OnInit {
+  isLoggedIn$: Observable<boolean>;
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
@@ -29,15 +19,27 @@ export class LayoutComponent implements OnDestroy, AfterViewInit {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public menuItems: MenuItems
+    public menuItems: MenuItems,
+    private authService: AuthService
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-  ngAfterViewInit() {}
+
+  ngAfterViewInit() {
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+  }
+
+  onLogout() {
+    this.authService.logout();                      // {3}
+  }
 }

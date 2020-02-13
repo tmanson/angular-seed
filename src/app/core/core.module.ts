@@ -41,7 +41,6 @@ export function createTranslateLoader(http: HttpClient) {
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-
   ],
   declarations: [
     LayoutComponent,
