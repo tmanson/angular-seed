@@ -9,7 +9,7 @@ export interface Menu {
 
 const MENUITEMS = [
   {state: 'home', name: 'Accueil', type: 'link', icon: 'home'},
-  {state: 'administration', type: 'link', name: 'Administration', icon: 'settings'}
+  {state: 'app-administration', type: 'link', name: 'app-administration', icon: 'settings'}
 ];
 
 @Injectable()
