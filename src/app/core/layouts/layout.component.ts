@@ -1,6 +1,5 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {MenuItems} from '@shared/menu-items/menu-items';
 import {Observable} from 'rxjs';
 import {AuthService} from '@core/auth/auth.service';
 
@@ -19,7 +18,6 @@ export class LayoutComponent implements OnDestroy, AfterViewInit, OnInit {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public menuItems: MenuItems,
     private authService: AuthService
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');

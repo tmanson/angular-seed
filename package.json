@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run build:clients && npm run build:main",
+    "build": "npm run build:libraries && npm run build:clients && npm run build:main",
+    "build:libraries": "ng build --prod --project shared-lib",
     "build:clients": "npm run build:app-administration",
     "build:app-administration": "ng build --prod --single-bundle --project app-administration --output-hashing none --vendor-chunk false --output-path src/assets/micro-frontends/app-administration",
     "build:main": "ng build --project main",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
+    "@angular-devkit/build-ng-packagr": "~0.900.1",
     "@angular/cli": "^9.0.0",
     "@angular/compiler-cli": "^9.0.0",
     "@angular/language-service": "^9.0.0",
@@ -57,6 +59,7 @@
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "~3.1.0",
     "karma-jasmine-html-reporter": "^1.5.2",
+    "ng-packagr": "^9.0.0",
     "protractor": "^5.4.3",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",

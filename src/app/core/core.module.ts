@@ -17,7 +17,8 @@ import {AppRoutingModule} from '@app/app-routing.module';
 import {HeaderComponent} from '@core/layouts/header/header.component';
 import {LayoutComponent} from '@core/layouts/layout.component';
 import {SidebarComponent} from '@core/layouts/sidebar/sidebar.component';
-import {SpinnerComponent} from '@shared/spinner.component';
+import {SpinnerComponent} from '../../../projects/shared-lib/src/lib/spinner.component';
+import {MenuItems} from '@core/menu-items/menu-items';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -56,7 +57,8 @@ export function createTranslateLoader(http: HttpClient) {
     LanguageService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS},
-    {provide: ErrorHandler, useClass: ErrorHandlerService}
+    {provide: ErrorHandler, useClass: ErrorHandlerService},
+    MenuItems
   ]
 })
 

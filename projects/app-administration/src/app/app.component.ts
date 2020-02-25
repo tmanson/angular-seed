@@ -9,7 +9,6 @@ import { Component, OnInit, } from '@angular/core';
           <a routerLink="app-administration/page1" queryParamsHandling="merge">Flight Search</a> | <a routerLink="app-administration/page2" queryParamsHandling="merge">Advanced</a>
         </div>
       </div>
-      <router-outlet></router-outlet>
     </div>
   `,
   styles: [`#app-administration { border: darkred dashed 5px; padding: 10px }`]

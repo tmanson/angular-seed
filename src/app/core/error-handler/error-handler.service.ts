@@ -11,7 +11,7 @@ export class ErrorHandlerService implements ErrorHandler {
     switch (error.constructor) {
       case HttpErrorResponse: {
         console.error('HTTP Error!. ', error.message,
-                      'Status code: ', (<HttpErrorResponse>error).status);
+                      'Status code: ', (error as HttpErrorResponse).status);
         break;
       }
       case TypeError: {
