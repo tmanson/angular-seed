@@ -1,15 +1,19 @@
 import {Injectable} from '@angular/core';
 
 export interface Menu {
-  state: string;
+  group: string;
+  route: string;
   name: string;
   type: string;
   icon: string;
+  src: string;
+  selector:string;
+  loaded: boolean;
 }
 
 const MENUITEMS = [
-  {state: 'home', name: 'Accueil', type: 'link', icon: 'home'},
-  {state: 'admin', type: 'link', name: 'Administration', icon: 'settings'}
+  {group: 'home', type: 'link', name: 'Accueil', icon: 'home', route: 'app-home', selector: 'app-home', src: 'micro-frontends/app-home/main.js', loaded: false},
+  {group: 'admin', type: 'link', name: 'Administration', icon: 'settings', route: 'app-administration', selector: 'app-administration', src: 'micro-frontends/app-administration/main.js', loaded: false}
 ];
 
 @Injectable()
