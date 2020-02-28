@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       clients: {
         'app-administration': {
           loaded: false,
-          src: 'assets/micro-frontends/app-administration/main.js',
+          src: 'micro-frontends/app-administration/main.js',
           element: 'app-administration',
           route: '/app-administration'
         },

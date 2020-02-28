@@ -4,13 +4,11 @@ import {HomeComponent} from '@pages/home/home.component';
 import {LoginComponent} from '@pages/login/login.component';
 import {AuthGuard} from '@core/auth/auth.guard';
 import {Error404Component} from '../../projects/shared-lib/src/lib/components/error404/error404.component';
-import {AppComponent as AdminComponent} from '../../projects/app-administration/src/app/app.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   {path: '**', component: Error404Component}
 ];
 

@@ -8,7 +8,7 @@
     "build": "npm run build:libraries && npm run build:clients && npm run build:main",
     "build:libraries": "ng build --prod --project shared-lib",
     "build:clients": "npm run build:app-administration",
-    "build:app-administration": "ng build --prod --single-bundle --project app-administration --output-hashing none --vendor-chunk false --output-path src/assets/micro-frontends/app-administration",
+    "build:app-administration": "ng build --prod --single-bundle --project app-administration --output-hashing none --vendor-chunk false --output-path dist/main/micro-frontends/app-administration",
     "build:main": "ng build --project main",
     "test": "ng test",
     "lint": "ng lint",
