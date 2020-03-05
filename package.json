@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run build:libraries && npm run build:clients && npm run build:main",
+    "build": "npm run build:libraries && npm run build:main && npm run build:clients",
     "build:libraries": "ng build --prod --project shared-lib",
     "build:clients": "npm run build:app-administration",
     "build:app-administration": "ng build --prod --single-bundle --project app-administration --output-hashing none --vendor-chunk false --output-path dist/main/micro-frontends/app-administration",
