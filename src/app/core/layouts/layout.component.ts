@@ -1,7 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AuthService} from '@core/auth/auth.service';
+import {AuthService} from '../../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 /** @title Responsive sidenav */
 @Component({

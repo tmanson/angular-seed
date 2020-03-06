@@ -51,9 +51,9 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -119,6 +119,122 @@
         }
       }
     },
+    "app-home": {
+      "root": "projects/app-home/",
+      "projectType": "application",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:build",
+          "options": {
+            "outputPath": "dist/app-home",
+            "index": "projects/app-home/src/index.html",
+            "main": "projects/app-home/src/main.ts",
+            "polyfills": "projects/app-home/src/polyfills.ts",
+            "tsConfig": "projects/app-home/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/app-home/src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/app-home/src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/app-home/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "debug": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/app-home/src/environments/environment.ts",
+                  "with": "projects/app-home/src/environments/environment.standalone.ts"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/app-home/src/environments/environment.ts",
+                  "with": "projects/app-home/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "app-home:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app-home:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app-home:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/app-home/src/test.ts",
+            "polyfills": "projects/app-home/src/polyfills.ts",
+            "tsConfig": "projects/app-home/tsconfig.spec.json",
+            "karmaConfig": "projects/app-home/karma.conf.js",
+            "styles": [
+              {
+                "input": "projects/app-home/styles.css"
+              }
+            ],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/app-home/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/app-home/src/assets",
+                "output": "/assets"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/app-home/tsconfig.app.json",
+              "projects/app-home/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "main": {
       "root": "",
       "sourceRoot": "src",
@@ -140,8 +256,16 @@
             "tsConfig": "src/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -161,9 +285,9 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,

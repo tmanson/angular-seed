@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {AuthService} from '@core/auth/auth.service';
+import {AuthService} from '../../../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',

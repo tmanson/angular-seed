@@ -19,20 +19,20 @@ export class AppComponent implements OnInit {
     this.shellService.init({
       initialRoute: '/home',
       outletId: 'content',
-      preload: true,
+      preload: false,
       clients: {
-        'app-administration': {
+        'app-home': {
           loaded: false,
-          src: 'micro-frontends/app-administration/main.js',
-          element: 'app-administration',
-          route: '/app-administration'
+          src: 'assets/micro-frontends/app-home/main.js',
+          element: 'app-home',
+          route: '/home'
         },
-        /*app-administration: {
+        'app-administration': {
           loaded: false,
           src: 'assets/micro-frontends/app-administration/main.js',
           element: 'app-administration',
           route: '/app-administration'
-        },
+        },/*
         catalogue: {
           loaded: false,
           src: 'assets/micro-frontends/catalogue/main.js',

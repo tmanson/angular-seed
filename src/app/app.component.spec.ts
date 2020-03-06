@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {LanguageService} from '@core/language/services/language.service';
+import {LanguageService} from '@core/../../projects/shared-lib/src/lib/services/language/services/language.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

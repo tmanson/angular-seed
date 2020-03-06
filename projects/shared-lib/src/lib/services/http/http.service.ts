@@ -47,7 +47,7 @@ export class HttpService {
     const headers = _headers || new HttpHeaders();
 
     return headers
-      .set(this.auth, 'Insert Token here')
+      // .set(this.auth, 'Insert Token here')
       .set(this.content, contentType)
       .set(this.accept, accept);
   }

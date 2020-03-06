@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
 import { ClientConfigs, ShellConfig } from './config';
+import {AuthService} from '../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShellService {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   private config: ShellConfig;
 
   init(config: ShellConfig) {
     this.config = config;
+    if (config.preload) {
+      this.preloadClients();
+    }
     if (!location.hash && config.initialRoute) {
       location.hash = config.initialRoute;
     }
     window.addEventListener('hashchange', () => this.urlChanged());
     setTimeout(() => this.urlChanged(), 0);
-    if (config.preload) {
-      this.preloadClients();
-    }
   }
 
   urlChanged() {
@@ -59,16 +62,11 @@ export class ShellService {
 
     const elms = document.getElementsByTagName(entry.element) as HTMLCollectionOf<HTMLElement>;
 
-    if (elms.length === 0) {
-      throw new Error(`Client ${clientName} is not loaded.`);
+    if (elms.length === 1) {
+      const elm = elms[0];
+      elm.hidden = !show;
     }
 
-    if (elms.length > 1) {
-      throw new Error(`Client ${clientName} is loaded several times.`);
-    }
-
-    const elm = elms[0];
-    elm.hidden = !show;
   }
 
   load(name: string): void {
@@ -80,20 +78,21 @@ export class ShellService {
     configItem.loaded = true;
 
     const content = document.getElementById(this.config.outletId || 'content');
+debugger
+    if (content) { // Add tag for micro frontend, e. g. <app-administration></app-administration>
+      const element = document.createElement(configItem.element);
+      element.hidden = !location.hash.startsWith('#' + configItem.route);
+      content.appendChild(element);
 
-    // Add tag for micro frontend, e. g. <app-administration></app-administration>
-    const element = document.createElement(configItem.element);
-    element.hidden = !location.hash.startsWith('#' + configItem.route);
-    content.appendChild(element);
+      // Add script-tag(s) to load bundle
+      const files = typeof configItem.src === 'string' ? [configItem.src] : configItem.src;
 
-    // Add script-tag(s) to load bundle
-    const files = typeof configItem.src === 'string' ? [configItem.src] : configItem.src;
-
-    files.forEach(src => {
-      const script = document.createElement('script');
-      script.src = src;
-      content.appendChild(script);
-    });
+      files.forEach(src => {
+        const script = document.createElement('script');
+        script.src = src;
+        content.appendChild(script);
+      });
+    }
 
   }
 

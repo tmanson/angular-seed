@@ -1,7 +1,10 @@
-import { ModuleConfig } from '@app/app.config';
 import { InjectionToken } from '@angular/core';
 
-export interface CoreModuleConfig extends ModuleConfig {
+export interface ModuleConfig {
+  NAVIGATION?: any;
+}
+
+export interface SharedLibModuleConfig extends ModuleConfig {
   WEBSTORAGE_CONFIG: IWebstorageConfig;
   TRANSLATE_CONFIG: {
     I18N_PATH: string,
@@ -9,7 +12,7 @@ export interface CoreModuleConfig extends ModuleConfig {
   };
 }
 
-export const CORE_MODULE_CONSTANTS: CoreModuleConfig = {
+export const SHARED_MODULE_CONSTANTS: SharedLibModuleConfig = {
   WEBSTORAGE_CONFIG: {
     prefix: 'angular-7-seed',
     separator: '.',
@@ -27,4 +30,4 @@ interface IWebstorageConfig {
   caseSensitive: boolean;
 }
 
-export let CORE_MODULE_CONFIG = new InjectionToken<CoreModuleConfig>('core.module.config');
+export let SHARED_MODULE_CONFIG = new InjectionToken<SharedLibModuleConfig>('core.module.config');

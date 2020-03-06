@@ -2,10 +2,9 @@
 // application elements such as components or services.
 
 import { InjectionToken } from '@angular/core';
+import {ModuleConfig} from '../../projects/shared-lib/src/lib/shared-lib.module.config';
 
-export interface ModuleConfig {
-  NAVIGATION?: any;
-}
+
 
 export interface AppConfig extends ModuleConfig {
   TITLE: string;

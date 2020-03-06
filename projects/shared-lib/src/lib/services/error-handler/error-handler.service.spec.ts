@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ErrorHandlerService } from '@app/core/error-handler/error-handler.service';
+import { ErrorHandlerService } from './error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 describe('SlashErrorHandlerService', () => {

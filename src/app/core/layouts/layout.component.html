@@ -1,11 +1,11 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<div class="main-container">
+<div class="main-container" >
   <!-- ============================================================== -->
   <!-- Topbar - style you can find in header.scss -->
   <!-- ============================================================== -->
-  <mat-toolbar color="primary" class="topbar telative" *ngIf="isLoggedIn | async">
+  <mat-toolbar color="primary" class="topbar telative" *ngIf="isLoggedIn | async as loggedIn">
     <!-- ============================================================== -->
     <!-- Logo - style you can find in header.scss -->
     <!-- ============================================================== -->
@@ -51,10 +51,13 @@
     <!-- Page container - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <mat-sidenav-content class="page-wrapper">
-      <div id="content" class="page-content">
+      <div id="content" class="page-content" *ngIf="isLoggedIn | async" >
         <router-outlet>
           <app-spinner></app-spinner>
         </router-outlet>
+      </div>
+      <div *ngIf="!(isLoggedIn | async)" class="page-content">
+        <app-login></app-login>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

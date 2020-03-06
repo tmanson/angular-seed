@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '@core/auth/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,22 +9,29 @@ import {AuthService} from '@core/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;                    // {1}
-  private formSubmitAttempt: boolean; // {2}
+  form: FormGroup;
+  private formSubmitAttempt: boolean;
+  private returnUrl: string;
+  private loading = false;
 
   constructor(
-    private fb: FormBuilder,         // {3}
-    private authService: AuthService // {4}
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
+  }
 
   ngOnInit() {
-    this.form = this.fb.group({     // {5}
+    this.form = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  isFieldInvalid(field: string) { // {6}
+  isFieldInvalid(field: string) {
     return (
       (!this.form.get(field).valid && this.form.get(field).touched) ||
       (this.form.get(field).untouched && this.formSubmitAttempt)
@@ -31,10 +39,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     if (this.form.valid) {
-      this.authService.login(this.form.value); // {7}
+      this.authService.login(this.form.value)
+        .subscribe(
+          data => {
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.loading = false;
+            console.log("err")
+          });
     }
-    this.formSubmitAttempt = true;             // {8}
+    this.formSubmitAttempt = true;
   }
 
 }
