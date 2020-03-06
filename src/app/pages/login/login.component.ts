@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../../projects/shared-lib/src/lib/services/auth/auth.service';
+import {ShellService} from '@app/shell/shell.service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +11,12 @@ import {AuthService} from '../../../../projects/shared-lib/src/lib/services/auth
 export class LoginComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
-  private returnUrl: string;
   private loading = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private shellService: ShellService
   ) {
   }
 
@@ -27,8 +25,6 @@ export class LoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   isFieldInvalid(field: string) {
@@ -44,7 +40,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value)
         .subscribe(
           data => {
-            this.router.navigate([this.returnUrl]);
+            debugger
+            this.shellService.navigate(location.hash);
           },
           error => {
             this.loading = false;

@@ -13,7 +13,7 @@ export interface Menu {
 
 const MENUITEMS = [
   {group: 'home', type: 'link', name: 'Accueil', icon: 'home', route: 'home', selector: 'app-home', src: 'assets/micro-frontends/app-home/main.js', loaded: false},
-  {group: 'admin', type: 'link', name: 'Administration', icon: 'settings', route: 'app-administration', selector: 'app-administration', src: 'assets/micro-frontends/app-administration/main.js', loaded: false}
+  {group: 'admin', type: 'link', name: 'Administration', icon: 'settings', route: 'administration', selector: 'app-administration', src: 'assets/micro-frontends/app-administration/main.js', loaded: false}
 ];
 
 @Injectable()

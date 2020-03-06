@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
 import {User} from './user';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -9,10 +8,9 @@ import {HttpService} from '../http/http.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private router: Router,
     private http: HttpService
   ) {
     this._currentUser = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { ClientConfigs, ShellConfig } from './config';
+import {Injectable} from '@angular/core';
+import {ShellConfig} from './config';
 import {AuthService} from '../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 @Injectable({
@@ -7,13 +7,16 @@ import {AuthService} from '../../../projects/shared-lib/src/lib/services/auth/au
 })
 export class ShellService {
 
-  constructor(
-    private authService: AuthService
-  ) { }
-
   private config: ShellConfig;
 
+  constructor(
+    private authService: AuthService
+  ) {
+  }
+
   init(config: ShellConfig) {
+
+    window.removeEventListener('hashchange', () => this.urlChanged());
     this.config = config;
     if (config.preload) {
       this.preloadClients();
@@ -34,19 +37,17 @@ export class ShellService {
         // Lazy load module if still not loaded
         if (!entry.loaded) {
           this.load(client);
-        }
-        else {
+        } else {
           this.showClient(client);
         }
-      }
-      else if (entry.loaded) {
+      } else if (entry.loaded) {
         this.hideClient(client);
       }
     }
   }
 
   showClient(clientName: string) {
-    this.setClientVisibility(clientName, true);
+    this.setClientVisibility(clientName, this.authService.loggedIn.value);
   }
 
   hideClient(clientName: string) {
@@ -74,11 +75,11 @@ export class ShellService {
     const configItem = this.config.clients[name];
 
     // Don't load bundle twice
-    if (configItem.loaded) return;
-    configItem.loaded = true;
+    if (configItem.loaded) {
+      return;
+    }
 
     const content = document.getElementById(this.config.outletId || 'content');
-debugger
     if (content) { // Add tag for micro frontend, e. g. <app-administration></app-administration>
       const element = document.createElement(configItem.element);
       element.hidden = !location.hash.startsWith('#' + configItem.route);
@@ -92,6 +93,7 @@ debugger
         script.src = src;
         content.appendChild(script);
       });
+      configItem.loaded = true;
     }
 
   }
@@ -104,7 +106,7 @@ debugger
 
   navigate(url: string) {
     const pos = location.hash.indexOf('?');
-    const query = pos !== -1? location.hash.substr(pos): '';
+    const query = pos !== -1 ? location.hash.substr(pos) : '';
     location.hash = url + query;
   }
 
