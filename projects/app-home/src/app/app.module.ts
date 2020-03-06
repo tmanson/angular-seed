@@ -14,6 +14,7 @@ import {AuthGuard} from '../../../shared-lib/src/lib/services/auth/auth.guard';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'home'},
       {
         path: 'home', children: [
           {path: '', component: HomeComponent},

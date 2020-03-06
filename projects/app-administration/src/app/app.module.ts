@@ -15,6 +15,7 @@ import { ErrorComponent } from './error/error.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'administration/page1'},
       {
         path: 'administration', children: [
           { path: 'page1', component: Page1Component },

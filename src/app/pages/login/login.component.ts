@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value)
         .subscribe(
           data => {
-            debugger
             this.shellService.navigate(location.hash);
           },
           error => {
