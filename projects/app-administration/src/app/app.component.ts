@@ -6,7 +6,7 @@ import { Component, OnInit, } from '@angular/core';
     <div id="app-administration">
       <div class="card">
         <div class="content">
-          <a routerLink="administration/page1" queryParamsHandling="merge">Flight Search</a> | <a routerLink="administration/page2" queryParamsHandling="merge">Advanced</a>
+          <a routerLink="administration/page1">Flight Search</a> | <a routerLink="administration/page2" >Advanced</a>
         </div>
       </div>
         <router-outlet></router-outlet>

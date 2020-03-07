@@ -3,7 +3,6 @@ import {LanguageService} from '../../../../../shared-lib/src/lib/services/langua
 import {StorageService} from '../../../../../shared-lib/src/lib/services/storage/storage.service';
 
 @Component({
-  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

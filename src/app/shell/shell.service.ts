@@ -82,7 +82,7 @@ export class ShellService {
     const content = document.getElementById(this.config.outletId || 'content');
     if (content) { // Add tag for micro frontend, e. g. <app-administration></app-administration>
       const element = document.createElement(configItem.element);
-      element.hidden = !location.hash.startsWith('#' + configItem.route);
+      element.hidden = true;
       content.appendChild(element);
 
       // Add script-tag(s) to load bundle

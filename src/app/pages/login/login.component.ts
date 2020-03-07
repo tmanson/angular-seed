@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value)
         .subscribe(
           data => {
-            this.shellService.navigate(location.hash);
+            this.shellService.urlChanged();//navigate(location.hash);
           },
           error => {
             this.loading = false;
-            console.log("err")
+            console.log("err", error)
           });
     }
     this.formSubmitAttempt = true;

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     this.shellService.init({
       initialRoute: '/home',
       outletId: 'content',
-      preload: true,
+      preload: false,
       clients: {
         'app-home': {
           loaded: false,
