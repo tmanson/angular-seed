@@ -17,6 +17,7 @@ import {ClientsItems} from '@app/shell/config';
   imports: [
     BrowserModule,
     CoreModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule
   ],
