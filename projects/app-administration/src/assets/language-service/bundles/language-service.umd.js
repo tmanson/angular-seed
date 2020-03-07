@@ -3358,7 +3358,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
         Identifiers.namespaceHTML = { name: 'ɵɵnamespaceHTML', moduleName: CORE$1 };
         Identifiers.namespaceMathML = { name: 'ɵɵnamespaceMathML', moduleName: CORE$1 };
         Identifiers.namespaceSVG = { name: 'ɵɵnamespaceSVG', moduleName: CORE$1 };
-        Identifiers.element = { name: 'ɵɵelement', moduleName: CORE$1 };
+        Identifiers.selector = { name: 'ɵɵelement', moduleName: CORE$1 };
         Identifiers.elementStart = { name: 'ɵɵelementStart', moduleName: CORE$1 };
         Identifiers.elementEnd = { name: 'ɵɵelementEnd', moduleName: CORE$1 };
         Identifiers.elementProperty = { name: 'ɵɵelementProperty', moduleName: CORE$1 };
@@ -6523,10 +6523,10 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
             return null;
         }
         var fnCall = new InvokeFunctionExpr(
-        /* fn */ importExpr(Identifiers$1.setNgModuleScope), 
-        /* args */ [moduleType, mapToMapExpression(scopeMap)], 
-        /* type */ undefined, 
-        /* sourceSpan */ undefined, 
+        /* fn */ importExpr(Identifiers$1.setNgModuleScope),
+        /* args */ [moduleType, mapToMapExpression(scopeMap)],
+        /* type */ undefined,
+        /* sourceSpan */ undefined,
         /* pure */ true);
         return fnCall.toStmt();
     }
@@ -7413,7 +7413,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
         /**
          * Render2 compatible statements,
          */
-        stmts, 
+        stmts,
         /**
          * Variable name used with render2 compatible statements.
          */
@@ -14767,7 +14767,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
                 return null;
             }
             var children = visitAll$1(this, ast.children, null);
-            return new Element(ast.name, visitAll$1(this, ast.attrs), 
+            return new Element(ast.name, visitAll$1(this, ast.attrs),
             /* inputs */ [], /* outputs */ [], children, /* references */ [], ast.sourceSpan, ast.startSourceSpan, ast.endSourceSpan);
         };
         NonBindableVisitor.prototype.visitComment = function (comment) { return null; };
@@ -17071,7 +17071,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
         if (firstSelector) {
             var selectorAttributes = firstSelector.getAttrs();
             if (selectorAttributes.length) {
-                definitionMap.set('attrs', constantPool.getConstLiteral(literalArr(selectorAttributes.map(function (value) { return value != null ? literal(value) : literal(undefined); })), 
+                definitionMap.set('attrs', constantPool.getConstLiteral(literalArr(selectorAttributes.map(function (value) { return value != null ? literal(value) : literal(undefined); })),
                 /* forceShared */ true));
             }
         }
@@ -22476,7 +22476,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
                         var requiredAnnotationTypes = this.annotationForParentClassWithSummaryKind.get(summary.type.summaryKind);
                         var typeHasRequiredAnnotation = requiredAnnotationTypes.some(function (requiredType) { return ownAnnotations_1.some(function (ann) { return requiredType.isTypeOf(ann); }); });
                         if (!typeHasRequiredAnnotation) {
-                            this.reportError(formatMetadataError(metadataError("Class " + type.name + " in " + type.filePath + " extends from a " + CompileSummaryKind[summary.type.summaryKind] + " in another compilation unit without duplicating the decorator", 
+                            this.reportError(formatMetadataError(metadataError("Class " + type.name + " in " + type.filePath + " extends from a " + CompileSummaryKind[summary.type.summaryKind] + " in another compilation unit without duplicating the decorator",
                             /* summary */ undefined, "Please add a " + requiredAnnotationTypes.map(function (type) { return type.ngMetadataName; }).join(' or ') + " decorator to the class"), type), type);
                         }
                     }
@@ -30427,12 +30427,12 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
                         var childRecord = options & 2 /* CheckSelf */ ? records.get(depRecord.token) : undefined;
                         deps.push(tryResolveToken(
                         // Current Token to resolve
-                        depRecord.token, 
+                        depRecord.token,
                         // A record which describes how to resolve the token.
                         // If undefined, this means we don't have such a record
-                        childRecord, 
+                        childRecord,
                         // Other records we know about.
-                        records, 
+                        records,
                         // If we don't know how to resolve dependency and we should not check parent for it,
                         // than pass in Null injector.
                         !childRecord && !(options & 4 /* CheckParent */) ? Injector.NULL : parent, options & 1 /* Optional */ ? null : Injector.THROW_IF_NOT_FOUND, InjectFlags.Default));
@@ -30925,7 +30925,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
         /**
          * Factory function which can return an instance of an object represented by a key.
          */
-        factory, 
+        factory,
         /**
          * Arguments (dependencies) to the `factory` function.
          */
@@ -32216,7 +32216,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
         /**
          * Factory to invoke in order to create a new instance.
          */
-        factory, 
+        factory,
         /**
          * Set to `true` if the token is declared in `viewProviders` (or if it is component).
          */
@@ -39462,7 +39462,7 @@ define(['exports', 'path', 'typescript', 'fs'], function (exports, path, ts, fs)
     var ComponentFactory_ = /** @class */ (function (_super) {
         __extends(ComponentFactory_, _super);
         function ComponentFactory_(selector, componentType, viewDefFactory, _inputs, _outputs, ngContentSelectors) {
-            var _this = 
+            var _this =
             // Attention: this ctor is called as top level function.
             // Putting any logic in here will destroy closure tree shaking!
             _super.call(this) || this;
@@ -42738,7 +42738,7 @@ ${errors.map((err, i) => `${i + 1}) ${err.toString()}`).join('\n  ')}` : '';
      * Use of this source code is governed by an MIT-style license that can be
      * found in the LICENSE file at https://angular.io/license
      */
-    var ɵ0$9 = function (ngModule) { return ngModule; }, ɵ1$3 = 
+    var ɵ0$9 = function (ngModule) { return ngModule; }, ɵ1$3 =
     /**
      * Decorator that marks the following class as an NgModule, and supplies
      * configuration metadata for it.
@@ -47148,7 +47148,7 @@ ${errors.map((err, i) => `${i + 1}) ${err.toString()}`).join('\n  ')}` : '';
     var NgModuleFactory_ = /** @class */ (function (_super) {
         __extends(NgModuleFactory_, _super);
         function NgModuleFactory_(moduleType, _bootstrapComponents, _ngModuleDefFactory) {
-            var _this = 
+            var _this =
             // Attention: this ctor is called as top level function.
             // Putting any logic in here will destroy closure tree shaking!
             _super.call(this) || this;

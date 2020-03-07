@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ShellConfig} from './config';
+import {ClientConfig, ShellConfig} from './config';
 import {AuthService} from '../../../projects/shared-lib/src/lib/services/auth/auth.service';
 
 @Injectable({
@@ -29,79 +29,68 @@ export class ShellService {
   }
 
   urlChanged() {
-    for (const client in this.config.clients) {
-      const entry = this.config.clients[client];
-      const route = '#' + entry.route;
-
-      if (location.hash.startsWith(route)) {
-        // Lazy load module if still not loaded
-        if (!entry.loaded) {
-          this.load(client);
-        } else {
-          this.showClient(client);
+    this.config.clients.forEach(client => {
+        const route = '#' + client.route;
+        if (location.hash.startsWith(route)) {
+          // Lazy load module if still not loaded
+          if (!client.loaded) {
+            this.load(client);
+          } else {
+            this.showClient(client);
+          }
+        } else if (client.loaded) {
+          this.hideClient(client);
         }
-      } else if (entry.loaded) {
-        this.hideClient(client);
       }
-    }
+    );
   }
 
-  showClient(clientName: string) {
-    this.setClientVisibility(clientName, this.authService.loggedIn.value);
+  showClient(client: ClientConfig) {
+    this.setClientVisibility(client, this.authService.loggedIn.value);
   }
 
-  hideClient(clientName: string) {
-    this.setClientVisibility(clientName, false);
+  hideClient(client: ClientConfig) {
+    this.setClientVisibility(client, false);
   }
 
-  setClientVisibility(clientName: string, show: boolean) {
-    const entry = this.config.clients[clientName];
-
-    if (!entry) {
-      throw new Error(`Client ${clientName} is not configured.`);
-    }
-
-    const elms = document.getElementsByTagName(entry.element) as HTMLCollectionOf<HTMLElement>;
+  setClientVisibility(client: ClientConfig, show: boolean) {
+    const elms = document.getElementsByTagName(client.selector) as HTMLCollectionOf<HTMLElement>;
 
     if (elms.length === 1) {
       const elm = elms[0];
       elm.hidden = !show;
     }
-
   }
 
-  load(name: string): void {
-
-    const configItem = this.config.clients[name];
-
+  load(client: ClientConfig): void {
     // Don't load bundle twice
-    if (configItem.loaded) {
+    if (client.loaded) {
       return;
     }
 
     const content = document.getElementById(this.config.outletId || 'content');
     if (content) { // Add tag for micro frontend, e. g. <app-administration></app-administration>
-      const element = document.createElement(configItem.element);
+      const element = document.createElement(client.selector);
       element.hidden = true;
       content.appendChild(element);
 
       // Add script-tag(s) to load bundle
-      const files = typeof configItem.src === 'string' ? [configItem.src] : configItem.src;
+      const files = typeof client.src === 'string' ? [client.src] : client.src;
 
       files.forEach(src => {
         const script = document.createElement('script');
         script.src = src;
         content.appendChild(script);
       });
-      configItem.loaded = true;
+      client.loaded = true;
     }
 
   }
 
   preloadClients() {
-    for (const client in this.config.clients) {
+    this.config.clients.forEach(client => {
       this.load(client);
-    }
+    });
   }
 
   navigate(url: string) {

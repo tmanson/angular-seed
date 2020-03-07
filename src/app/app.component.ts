@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ShellService} from '@app/shell/shell.service';
+import {ClientsItems} from '@app/shell/config';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ export class AppComponent implements OnInit {
   title = 'Angular 9 Seed';
 
 
-  constructor(private shellService: ShellService) {
+  constructor(
+    private shellService: ShellService,
+    private clientsItems: ClientsItems) {
   }
 
   ngOnInit() {
@@ -19,27 +22,9 @@ export class AppComponent implements OnInit {
     this.shellService.init({
       initialRoute: '/home',
       outletId: 'content',
-      preload: false,
-      clients: {
-        'app-home': {
-          loaded: false,
-          src: 'assets/micro-frontends/app-home/main.js',
-          element: 'app-home',
-          route: '/home'
-        },
-        'app-administration': {
-          loaded: false,
-          src: 'assets/micro-frontends/app-administration/main.js',
-          element: 'app-administration',
-          route: '/administration'
-        },/*
-        catalogue: {
-          loaded: false,
-          src: 'assets/micro-frontends/catalogue/main.js',
-          element: 'catalogue',
-          route: '/catalogue'
-        }*/
-      }});
+      preload: true,
+      clients: this.clientsItems.getClientItems()
+    });
 
   }
 }

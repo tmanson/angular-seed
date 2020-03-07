@@ -3421,7 +3421,7 @@
         Identifiers.namespaceHTML = { name: 'ɵɵnamespaceHTML', moduleName: CORE$1 };
         Identifiers.namespaceMathML = { name: 'ɵɵnamespaceMathML', moduleName: CORE$1 };
         Identifiers.namespaceSVG = { name: 'ɵɵnamespaceSVG', moduleName: CORE$1 };
-        Identifiers.element = { name: 'ɵɵelement', moduleName: CORE$1 };
+        Identifiers.selector = { name: 'ɵɵelement', moduleName: CORE$1 };
         Identifiers.elementStart = { name: 'ɵɵelementStart', moduleName: CORE$1 };
         Identifiers.elementEnd = { name: 'ɵɵelementEnd', moduleName: CORE$1 };
         Identifiers.elementProperty = { name: 'ɵɵelementProperty', moduleName: CORE$1 };
@@ -6647,10 +6647,10 @@
             return null;
         }
         var fnCall = new InvokeFunctionExpr(
-        /* fn */ importExpr(Identifiers$1.setNgModuleScope), 
-        /* args */ [moduleType, mapToMapExpression(scopeMap)], 
-        /* type */ undefined, 
-        /* sourceSpan */ undefined, 
+        /* fn */ importExpr(Identifiers$1.setNgModuleScope),
+        /* args */ [moduleType, mapToMapExpression(scopeMap)],
+        /* type */ undefined,
+        /* sourceSpan */ undefined,
         /* pure */ true);
         return fnCall.toStmt();
     }
@@ -6686,15 +6686,15 @@
         });
         var injectorDef = importExpr(Identifiers$1.defineInjector).callFn([injectorDefArg]);
         ctx.statements.push(new ClassStmt(
-        /* name */ className, 
-        /* parent */ null, 
+        /* name */ className,
+        /* parent */ null,
         /* fields */ [new ClassField(
-            /* name */ 'ngInjectorDef', 
-            /* type */ INFERRED_TYPE, 
-            /* modifiers */ [exports.StmtModifier.Static], 
-            /* initializer */ injectorDef)], 
-        /* getters */ [], 
-        /* constructorMethod */ new ClassMethod(null, [], []), 
+            /* name */ 'ngInjectorDef',
+            /* type */ INFERRED_TYPE,
+            /* modifiers */ [exports.StmtModifier.Static],
+            /* initializer */ injectorDef)],
+        /* getters */ [],
+        /* constructorMethod */ new ClassMethod(null, [], []),
         /* methods */ []));
     }
     function tupleTypeOf(exp) {
@@ -6754,15 +6754,15 @@
         var res = compilePipeFromMetadata(metadata);
         var definitionField = outputCtx.constantPool.propertyNameOf(3 /* Pipe */);
         outputCtx.statements.push(new ClassStmt(
-        /* name */ name, 
-        /* parent */ null, 
+        /* name */ name,
+        /* parent */ null,
         /* fields */ [new ClassField(
-            /* name */ definitionField, 
-            /* type */ INFERRED_TYPE, 
-            /* modifiers */ [exports.StmtModifier.Static], 
-            /* initializer */ res.expression)], 
-        /* getters */ [], 
-        /* constructorMethod */ new ClassMethod(null, [], []), 
+            /* name */ definitionField,
+            /* type */ INFERRED_TYPE,
+            /* modifiers */ [exports.StmtModifier.Static],
+            /* initializer */ res.expression)],
+        /* getters */ [],
+        /* constructorMethod */ new ClassMethod(null, [], []),
         /* methods */ []));
     }
 
@@ -7589,7 +7589,7 @@
         /**
          * Render2 compatible statements,
          */
-        stmts, 
+        stmts,
         /**
          * Variable name used with render2 compatible statements.
          */
@@ -11245,7 +11245,7 @@
                 var ngModuleProvider = { token: { identifier: ngModuleType }, useClass: ngModuleType };
                 _resolveProviders([ngModuleProvider], exports.ProviderAstType.PublicService, true, sourceSpan, _this._errors, _this._allProviders, /* isModule */ true);
             });
-            _resolveProviders(ngModule.transitiveModule.providers.map(function (entry) { return entry.provider; }).concat(extraProviders), exports.ProviderAstType.PublicService, false, sourceSpan, this._errors, this._allProviders, 
+            _resolveProviders(ngModule.transitiveModule.providers.map(function (entry) { return entry.provider; }).concat(extraProviders), exports.ProviderAstType.PublicService, false, sourceSpan, this._errors, this._allProviders,
             /* isModule */ false);
         }
         NgModuleProviderAnalyzer.prototype.parse = function () {
@@ -15113,7 +15113,7 @@
                 return null;
             }
             var children = visitAll$1(this, ast.children, null);
-            return new Element(ast.name, visitAll$1(this, ast.attrs), 
+            return new Element(ast.name, visitAll$1(this, ast.attrs),
             /* inputs */ [], /* outputs */ [], children, /* references */ [], ast.sourceSpan, ast.startSourceSpan, ast.endSourceSpan);
         };
         NonBindableVisitor.prototype.visitComment = function (comment) { return null; };
@@ -17417,7 +17417,7 @@
         if (firstSelector) {
             var selectorAttributes = firstSelector.getAttrs();
             if (selectorAttributes.length) {
-                definitionMap.set('attrs', constantPool.getConstLiteral(literalArr(selectorAttributes.map(function (value) { return value != null ? literal(value) : literal(undefined); })), 
+                definitionMap.set('attrs', constantPool.getConstLiteral(literalArr(selectorAttributes.map(function (value) { return value != null ? literal(value) : literal(undefined); })),
                 /* forceShared */ true));
             }
         }
@@ -25535,7 +25535,7 @@
                         var requiredAnnotationTypes = this.annotationForParentClassWithSummaryKind.get(summary.type.summaryKind);
                         var typeHasRequiredAnnotation = requiredAnnotationTypes.some(function (requiredType) { return ownAnnotations_1.some(function (ann) { return requiredType.isTypeOf(ann); }); });
                         if (!typeHasRequiredAnnotation) {
-                            this.reportError(formatMetadataError(metadataError("Class " + type.name + " in " + type.filePath + " extends from a " + exports.CompileSummaryKind[summary.type.summaryKind] + " in another compilation unit without duplicating the decorator", 
+                            this.reportError(formatMetadataError(metadataError("Class " + type.name + " in " + type.filePath + " extends from a " + exports.CompileSummaryKind[summary.type.summaryKind] + " in another compilation unit without duplicating the decorator",
                             /* summary */ undefined, "Please add a " + requiredAnnotationTypes.map(function (type) { return type.ngMetadataName; }).join(' or ') + " decorator to the class"), type), type);
                         }
                     }

@@ -1,18 +1,33 @@
+import {Injectable} from '@angular/core';
 
 export interface ClientConfig {
-    loaded: boolean;
-    src: string | string[];
-    element: string;
-    route: string;
+  group: string;
+  route: string;
+  name: string;
+  type: string;
+  icon: string;
+  src: string | string[];
+  selector:string;
+  loaded: boolean;
 }
 
-export interface ClientConfigs {
-    [name: string]: ClientConfig
-}
+
+const CLIENT_ITEMS = [
+  {group: 'home', type: 'link', name: 'Accueil', icon: 'home', route: '/home', selector: 'app-home', src: 'assets/micro-frontends/app-home/main.js', loaded: false},
+  {group: 'admin', type: 'link', name: 'Administration', icon: 'settings', route: '/administration', selector: 'app-administration', src: 'assets/micro-frontends/app-administration/main.js', loaded: false}
+];
 
 export interface ShellConfig {
     outletId?: string;
     initialRoute: string;
     preload: boolean;
-    clients: ClientConfigs;
+    clients: ClientConfig[];
+}
+
+
+@Injectable()
+export class ClientsItems {
+  getClientItems(): ClientConfig[] {
+    return CLIENT_ITEMS;
+  }
 }

@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ShellService} from '@app/shell/shell.service';
-import {MenuItems} from '@core/menu-items/menu-items';
+import {ClientsItems} from '@app/shell/config';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +16,7 @@ export class SidebarComponent implements OnDestroy {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public menuItems: MenuItems,
+    public clientsItems: ClientsItems,
     private shellService: ShellService
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');

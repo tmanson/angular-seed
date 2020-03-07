@@ -22,8 +22,8 @@
 
 </div>
 <mat-nav-list appAccordion>
-    <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" group="{{menuitem.group}}">
-        <a class="" appAccordionToggle *ngIf="menuitem.type === 'link'" (click)="navigate('/'+ menuitem.route)">
+    <mat-list-item appAccordionLink *ngFor="let menuitem of clientsItems.getClientItems()" routerLinkActive="selected" group="{{menuitem.group}}">
+        <a class="" appAccordionToggle *ngIf="menuitem.type === 'link'" (click)="navigate(menuitem.route)">
             <mat-icon>{{ menuitem.icon }}</mat-icon>
             <span>{{ menuitem.name }}</span>
             <span fxFlex></span>
