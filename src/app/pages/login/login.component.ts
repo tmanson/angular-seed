@@ -10,8 +10,8 @@ import {ShellService} from '@app/shell/shell.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  loading = false;
   private formSubmitAttempt: boolean;
-  private loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,16 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loading = true;
     if (this.form.valid) {
+      this.loading = true;
       this.authService.login(this.form.value)
         .subscribe(
           data => {
-            this.shellService.urlChanged();//navigate(location.hash);
+            this.shellService.urlChanged();
           },
           error => {
             this.loading = false;
-            console.log("err", error)
+            console.log('err', error);
           });
     }
     this.formSubmitAttempt = true;

@@ -15,6 +15,7 @@ import {ErrorHandlerService} from './services/error-handler/error-handler.servic
 import {HttpService} from './services/http/http.service';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor} from './services/http/error.interceptor';
+import {SpinnerButtonDirective} from './directives/SpinnerButtonDirective';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, SHARED_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -22,7 +23,9 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SpinnerButtonDirective
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -39,7 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
     PipesModule,
     TranslateModule,
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     CommonModule,
@@ -51,7 +54,8 @@ export function createTranslateLoader(http: HttpClient) {
     PipesModule,
     TranslateModule,
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
+    SpinnerButtonDirective
   ],
   providers: [
     HttpService,
