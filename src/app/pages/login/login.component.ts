@@ -11,7 +11,9 @@ import {ShellService} from '@app/shell/shell.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
+  loginInvalid: boolean;
   private formSubmitAttempt: boolean;
+  loginErrorMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loginInvalid = false;
     if (this.form.valid) {
       this.loading = true;
       this.authService.login(this.form.value)
@@ -44,6 +47,8 @@ export class LoginComponent implements OnInit {
           },
           error => {
             this.loading = false;
+            this.loginInvalid = true;
+            this.loginErrorMessage = error;
             console.log('err', error);
           });
     }
