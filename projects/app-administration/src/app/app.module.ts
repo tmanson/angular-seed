@@ -18,7 +18,6 @@ import {Error404Component} from '../../../shared-lib/src/lib/components/error404
       {path: '', pathMatch: 'full', redirectTo: 'administration'},
       {
         path: 'administration',
-        component: Page1Component,
         children: [
           {path: '', pathMatch: 'full', redirectTo: 'page1'},
           {path: 'page1', component: Page1Component},
