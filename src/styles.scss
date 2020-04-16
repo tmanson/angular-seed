@@ -7,8 +7,8 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+// Icons
+@import "assets/styles/icons/material-icons/material-icons.css";
 
 $fontConfig: (
   display-4: mat-typography-level(112px, 112px, 300, 'Roboto', -0.0134em),
