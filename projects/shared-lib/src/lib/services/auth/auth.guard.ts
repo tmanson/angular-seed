@@ -31,10 +31,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
       .pipe(
         take(1),
         map((isLoggedIn: boolean) => {
-          if (!isLoggedIn) {
-            return false;
-          }
-          return true;
+          return isLoggedIn;
         }));
   }
 
