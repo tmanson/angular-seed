@@ -16,6 +16,7 @@ import {HttpService} from './services/http/http.service';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor} from './services/http/error.interceptor';
 import {SpinnerButtonDirective} from './directives/SpinnerButtonDirective';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, SHARED_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -27,6 +28,7 @@ export function createTranslateLoader(http: HttpClient) {
     SpinnerButtonDirective
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
     StorageModule,

@@ -6,7 +6,6 @@ import {HeaderComponent} from '@core/layouts/header/header.component';
 import {LayoutComponent} from '@core/layouts/layout.component';
 import {SidebarComponent} from '@core/layouts/sidebar/sidebar.component';
 import {SpinnerComponent} from '../../../projects/shared-lib/src/lib/spinner.component';
-import {MenuItems} from '@core/menu-items/menu-items';
 import {SharedLibModule} from '../../../projects/shared-lib/src/lib/shared-lib.module';
 import {PagesModule} from '@pages/pages.module';
 
@@ -29,7 +28,6 @@ import {PagesModule} from '@pages/pages.module';
     LayoutComponent
   ],
   providers: [
-    MenuItems
   ]
 })
 

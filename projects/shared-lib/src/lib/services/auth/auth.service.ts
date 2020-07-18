@@ -39,7 +39,7 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  private static getUser(): User {
+  public static getUser(): User {
     const userString = localStorage.getItem(CURRENT_USER);
     if (!userString) {
       return undefined;
@@ -47,7 +47,7 @@ export class AuthService {
     return JSON.parse(userString);
   }
 
-  private static getToken(): string {
+  public static getToken(): string {
     const user = AuthService.getUser();
     if (!user) {
       return undefined;
